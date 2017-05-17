@@ -23,15 +23,16 @@ public class UserRepoImpl implements UserRepo {
         return Files.lines(data);
     }
     
-    
    
     @Override
 	public Stream<User> getStreamOfValidUsers(Stream<String> stream) throws IOException {
          return stream
                 .skip(1)
                 .map(line -> line.split(delimeter))
-                .map(array -> User.parse(array))
-                .filter(user -> user != null && user.isActive());
+                .map(array -> User.parseAsOptional(array))
+                .filter(optU -> optU.isPresent())
+                .map(optU -> optU.get())
+                .filter(user -> user.isActive());
     }
     
    

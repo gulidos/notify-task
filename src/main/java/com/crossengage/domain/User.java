@@ -1,6 +1,7 @@
 package com.crossengage.domain;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public class User {
 	private final long id;
@@ -21,19 +22,19 @@ public class User {
 	}
 	
 
-	public static User parse(String[] line) {
+	public static Optional<User> parseAsOptional(String[] line) {
 		if (line == null || line.length != NUMBER_OF_FIELDS)
-			return null;
+			return Optional.empty();
 		try {
 			long id = Long.parseLong(line[0].trim());
 			boolean active = Boolean.parseBoolean(line[1].trim());  
 			Contact contactBy = Contact.valueOf(line[2].trim());
 			String email = verifyEmail(line[3]);
 			String phone = verifyPhone(line[4]);
-			return new User(id, active, contactBy, email, phone);
+			return Optional.of(new User(id, active, contactBy, email, phone));
 		} catch (Exception e) {
 			System.err.println(e.getMessage() + " in line " + Arrays.asList(line));
-			return null;
+			return Optional.empty();
 		}
 	}
 	
