@@ -1,4 +1,4 @@
-package com.crossengage;
+package com.crossengage.service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -13,7 +13,7 @@ import com.crossengage.domain.User.Contact;
 import com.crossengage.service.Task;
 import com.crossengage.service.prodAndCons.TasksProducer;
 
-public class ContactTest {
+public class TaskTest {
 	private ByteArrayOutputStream out;
 	
 	@Before

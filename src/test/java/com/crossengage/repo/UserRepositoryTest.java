@@ -1,4 +1,4 @@
-package com.crossengage;
+package com.crossengage.repo;
 
 import static org.junit.Assert.assertEquals;
 

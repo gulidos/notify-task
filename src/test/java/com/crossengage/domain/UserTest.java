@@ -1,4 +1,4 @@
-package com.crossengage;
+package com.crossengage.domain;
 
 import java.io.IOException;
 
