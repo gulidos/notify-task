@@ -37,10 +37,6 @@ public class User {
 		}
 	}
 	
-	
-	public void doMessage(String message) {
-//		 contactBy.send(this, message);
-	}
 		
 	public long getId() {return id;}
 

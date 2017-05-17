@@ -6,22 +6,22 @@ import java.util.Arrays;
 import com.crossengage.domain.User;
 import com.crossengage.repo.UserRepo;
 import com.crossengage.service.EmailTask;
-import com.crossengage.service.HandlerBuffer;
+import com.crossengage.service.Buffer;
 import com.crossengage.service.SmsTask;
 import com.crossengage.service.Task;
 
-public class TasksProducer implements Runnable {
-	private final HandlerBuffer buffer;
+public class TasksProducer {
+	private final Buffer buffer;
 	private final UserRepo repo;
 	
 
-	public TasksProducer(HandlerBuffer buffer, UserRepo repo) {	
+	public TasksProducer(Buffer buffer, UserRepo repo) {	
 		this.buffer = buffer;
 		this.repo = repo;
 	}
 	
 
-	@Override
+
 	public void run() {
 		try {
 			repo.getStreamOfValidUsers()
@@ -35,7 +35,7 @@ public class TasksProducer implements Runnable {
 		
 	}
 	
-	public Task[] getTasksForUser(User user) {
+	public static Task[] getTasksForUser(User user) {
 		switch (user.getContactBy()) {
 		case email: return new Task[] { new EmailTask(user) };
 		case phone: return new Task[] { new SmsTask(user)   };
